@@ -17,14 +17,34 @@ import MyInformation from '@/views/myinfo/my_information.vue'
 import MyRating from '@/views/myinfo/my_rating.vue'
 import MyHistory from '@/views/myinfo/my_history.vue'
 import PasswordChange from '@/views/myinfo/password_change.vue'
-
+import Layout from '@/views/layout'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {path: '/login', component: Login}, 
     {path: '/register', component: Register},
-    {path: '/', component: Recommend},
+    {path: '/', component: Layout,
+      redirect:'/recommend',
+      children:[
+        {path:'/recommend',component:Recommend},
+        {path:'/match',component:Match},
+        {path:'/data',component:Date},
+        {path:'/InfoIndex',component:InfoIndex},
+      ]
+    },
+    {path:'/search',component:SearchIndex},
+    {path:'/search_result',component:SearchResult},
+    {path:'/finished',component:Finished},
+    {path:'/to_start',component:ToStart},
+    {path:'/underway',component:Underway},
+    {path:'/sporter_score',component:SporterScore},
+    {path:'/team_score',component:TeamScore},
+    {path:'/my_follow',component:MyFollow},
+    {path:'/my_information',component:MyInformation},
+    {path:'/my_rating',component:MyRating},
+    {path:'/my_history',component:MyHistory},
+    {path:'/password_change',component:PasswordChange},
   ],
 })
 
