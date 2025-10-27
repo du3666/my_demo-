@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/login/login_index.vue'
-import Register from '@/views/register/register_index.vue'
+import Register from '@/views/login/regis_index.vue'
 import Recommend from '@/views/layout/recommand_index.vue'
 import SearchIndex from '@/views/layout/search_index.vue'
 import SearchResult from '@/views/layout/search_result.vue'
