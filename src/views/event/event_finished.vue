@@ -1,14 +1,14 @@
-<vue>
+
   <template>
-    <div class="my-rating">
-      <h1>我的等级</h1>
+    <div class="event-finished">
+      <h1>已结束赛事</h1>
     </div>
   </template>
   <script setup lang="ts">
     
   </script>
   <style scoped>
-    .my-rating {
+    .event-finished {
       height: 100vh;
       background-color: #f5f5f5;
       display: flex;
@@ -17,4 +17,3 @@
       justify-content: center;
     }
   </style>
-</vue>

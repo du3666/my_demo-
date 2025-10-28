@@ -1,14 +1,13 @@
-<vue>
-  <template>
-    <div class="event-finished">
-      <h1>已结束赛事</h1>
+ <template>
+    <div class="event-to-start">
+      <h1>待开始赛事</h1>
     </div>
   </template>
   <script setup lang="ts">
     
   </script>
   <style scoped>
-    .event-finished {
+    .event-to-start {
       height: 100vh;
       background-color: #f5f5f5;
       display: flex;
@@ -17,4 +16,4 @@
       justify-content: center;
     }
   </style>
-</vue>
+

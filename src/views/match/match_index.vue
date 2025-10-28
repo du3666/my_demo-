@@ -1,4 +1,4 @@
-<vue>
+
   <template>
     <div class="match">
       <h1>赛事</h1>
@@ -17,4 +17,3 @@
       justify-content: center;
     }
   </style>
-</vue>

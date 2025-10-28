@@ -1,5 +1,4 @@
-<vue>
-  <template>
+<template>
     <div class="sporter-score">
       <h1>运动员分数</h1>
     </div>
@@ -17,4 +16,4 @@
       justify-content: center;
     }
   </style>
-</vue>
+

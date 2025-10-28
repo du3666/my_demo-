@@ -1,14 +1,13 @@
-<vue>
   <template>
-    <div class="password-change">
-      <h1>修改密码</h1>
+    <div class="MyHistory">
+      <h1>我的历史</h1>
     </div>
   </template>
   <script setup lang="ts">
     
   </script>
   <style scoped>
-    .password-change {
+    .MyHistory {
       height: 100vh;
       background-color: #f5f5f5;
       display: flex;
@@ -17,4 +16,4 @@
       justify-content: center;
     }
   </style>
-</vue>
+

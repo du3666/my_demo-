@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/login/login_index.vue'
 import Register from '@/views/login/regis_index.vue'
-import Recommend from '@/views/layout/recommand_index.vue'
+import Recommend from '@/views/layout/recommend_index.vue'
 import SearchIndex from '@/views/layout/search_index.vue'
 import SearchResult from '@/views/layout/search_result.vue'
 import Match from '@/views/match/match_index.vue'
-import Date from '@/views/data/data_index.vue'
+import MyDate from '@/views/data/data_index.vue'
 import Finished from '@/views/event/event_finished.vue'
 import ToStart from '@/views/event/event_to_start.vue'
 import Underway from '@/views/event/event_underway.vue'
@@ -17,7 +17,7 @@ import MyInformation from '@/views/myinfo/my_information.vue'
 import MyRating from '@/views/myinfo/my_rating.vue'
 import MyHistory from '@/views/myinfo/my_history.vue'
 import PasswordChange from '@/views/myinfo/password_change.vue'
-import Layout from '@/views/layout'
+import Layout from '@/views/layout/layout_index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,7 +29,7 @@ const router = createRouter({
       children:[
         {path:'/recommend',component:Recommend},
         {path:'/match',component:Match},
-        {path:'/data',component:Date},
+        {path:'/data',component:MyDate},
         {path:'/InfoIndex',component:InfoIndex},
       ]
     },

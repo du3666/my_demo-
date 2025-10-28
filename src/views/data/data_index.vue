@@ -1,14 +1,13 @@
-<vue>
   <template>
-    <div class="event-underway">
-      <h1>进行中的赛事</h1>
+    <div class="data">
+      <h1>数据</h1>
     </div>
   </template>
   <script setup lang="ts">
     
   </script>
   <style scoped>
-    .event-underway {
+    .data {
       height: 100vh;
       background-color: #f5f5f5;
       display: flex;
@@ -17,4 +16,3 @@
       justify-content: center;
     }
   </style>
-</vue>

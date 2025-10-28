@@ -1,14 +1,8 @@
 <template>
-  <div class="layout">
-    <div class="header">
-      <h1>Header</h1>
-    </div>
-    <div class="content">
-      <router-view></router-view>
-    </div>
-    <div class="footer">
-      <h1>Footer</h1>
-    </div>
+  <div class="recommend">
+  
+  <h1>推荐</h1>
+    
   </div>
 </template>
 
@@ -17,7 +11,7 @@
 </script>
 
 <style scoped>
-.layout {
+.recommend {
   height: 100vh;
   background-color: #f5f5f5;
   display: flex;
