@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '@/views/login/login_index.vue'
+import LoginPassword from '@/views/login/login_password.vue'
+import LoginPhone from '@/views/login/login_phone.vue'
 import Register from '@/views/login/regis_index.vue'
 import Recommend from '@/views/layout/recommend_index.vue'
 import SearchIndex from '@/views/layout/search_index.vue'
@@ -22,7 +23,8 @@ import Layout from '@/views/layout/layout_index.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {path: '/login', component: Login}, 
+    {path: '/login_phone', component: LoginPhone}, 
+    {path: '/login_password', component: LoginPassword}, 
     {path: '/register', component: Register},
     {path: '/', component: Layout,
       redirect:'/recommend',

@@ -1,6 +1,6 @@
  <template>
     <div class="MyRating">
-      <h1>我的等级</h1>
+      <h1>我的评分</h1>
     </div>
   </template>
   <script setup lang="ts">
