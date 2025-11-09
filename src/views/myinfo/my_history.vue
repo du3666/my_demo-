@@ -1,19 +1,17 @@
-  <template>
-    <div class="MyHistory">
-      <h1>我的历史</h1>
+<template>
+  <div class="MyHistory">
+    <div class="tobber">
+      <van-nav-bar title="我的历史" left-arrow @click-left="onClickLeft" />
     </div>
-  </template>
-  <script setup lang="ts">
-    
-  </script>
-  <style scoped>
-    .MyHistory {
-      height: 100vh;
-      background-color: #f5f5f5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-  </style>
-
+    <GameDisplay />
+  </div>
+</template>
+<script setup>
+import { useRouter } from 'vue-router'
+// // import { ref } from 'vue'
+const router = useRouter()
+const onClickLeft = () => {
+  router.back()
+}
+</script>
+<style scoped></style>

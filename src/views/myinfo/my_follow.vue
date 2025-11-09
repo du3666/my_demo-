@@ -1,18 +1,17 @@
 <template>
-     <div class="MyFollow">
-        我的关注
-        </div>
-    </template>
-    <script setup>
-
-    </script>
-    <style scoped>
-        .MyFollow {
-            height: 100vh;
-            background-color: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
+  <div class="MyFollow">
+    <div class="tobber">
+      <van-nav-bar title="我的关注" left-arrow @click-left="onClickLeft" />
+    </div>
+    <GameDisplay />
+  </div>
+</template>
+<script setup>
+import { useRouter } from 'vue-router'
+// // import { ref } from 'vue'
+const router = useRouter()
+const onClickLeft = () => {
+  router.back()
+}
+</script>
+<style scoped></style>
