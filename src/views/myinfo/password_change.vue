@@ -67,6 +67,15 @@ const changePassword = () => {
     })
     return
   }
+  // 发送修改密码请求
+  // userStore.changePassword(myId.value, oldPassword.value, newPassword.value)
+  showToast({
+    message: '修改密码成功',
+    duration: 1000,
+    position: 'top',
+    className: 'mytoast',
+  })
+  router.push('/login_password')
 }
 // 学号
 const myId = ref('')

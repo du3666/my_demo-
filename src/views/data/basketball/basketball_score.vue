@@ -10,17 +10,17 @@
       </div>
       <!-- 球员列表 -->
       <div class="table_body">
-        <div class="list">
+        <div class="list" v-for="team in matchdata" :key="team.teamrank" @click="handleClickTeam(team)">
           <div class="team_name">
-            <span class="team_num">1</span>
-            <span class="team_img"><img src="@/assets/d195641d8c27c510.webp" alt="" /></span>
-            <span class="team_names">软件工程队</span>
+            <span class="team_num">{{team.teamrank}}</span>
+            <span class="team_img"><img :src="team.teamlogo" alt="" /></span>
+            <span class="team_names">{{team.teamname}}</span>
           </div>
-          <div class="match_num">13</div>
-          <div class="win_lose">12/1</div>
-          <div class="win_rate">92.4%</div>
-          <div class="win_diff">2.0</div>
-          <div class="curr">4连胜</div>
+          <div class="match_num">{{team.gamenum}}</div>
+          <div class="win_lose">{{team.winlose}}</div>
+          <div class="win_rate">{{team.winrate}}</div>
+          <div class="win_diff">{{team.win_diff}}</div>
+          <div class="curr">{{team.curr}}</div>
         </div>
       </div>
 
@@ -28,7 +28,45 @@
       </div>
   </template>
   <script setup lang="ts">
-
+  import router from '@/router';
+  import { ref ,onBeforeMount} from 'vue';
+  const matchdata=ref([
+    {
+      teamrank:1,
+      teamname:'软件工程',
+      teamlogo:'/src/assets/d195641d8c27c510.webp',
+      gamenum:10,
+      winlose:'12/1',
+      winrate:'92.4%',
+      win_diff:'2.0',
+      curr:'4连胜',
+    },
+    {
+      teamrank:2,
+      teamname:'软件测试',
+      teamlogo:'/src/assets/d195641d8c27c510.webp',
+      gamenum:10,
+      winlose:'12/1',
+      winrate:'92.4%',
+      win_diff:'2.0',
+      curr:'4连胜',
+    },
+  ])
+  onBeforeMount(()=>{
+    // 从服务器获取数据
+    // 更新 matchdata.value
+    console.log(matchdata.value)
+  })
+  const handleClickTeam=(team)=>{
+    // console.log(team)
+    // 前往相应的队伍页面
+    // router.push({
+    //   name:'basketball_team',
+    //   params:{
+    //     teamid:team.teamid,
+    //   }
+    // })
+  }
   </script>
   <style scoped>
   /* 球队头部 */

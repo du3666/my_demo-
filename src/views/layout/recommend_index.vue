@@ -25,29 +25,24 @@
     </div>
     <!-- 轮播图 -->
     <div class="swiper">
-      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
+      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" @click="handleClickswiper">
+        <van-swipe-item v-for="item in swipedata" :key="item.id" @click="handleClickswiper(item)">
+          <van-image :src="item.image" fit="cover" style="width: 100%; height: 100%" />
+        </van-swipe-item>
       </van-swipe>
     </div>
     <!-- 推荐运动 -->
     <div class="myrecommend">
       <!-- <div class="recommend-item">
       </div> -->
-      <div class="recommend-item">
-        <van-image src="#" fit="cover" style="width: 100%; height: 80%" />
+      <div class="recommend-item" v-for="item in recommenddata" :key="item.id" @click="handleClickrecommend(item)">
+        <van-image :src="item.image" fit="cover" style="width: 100%; height: 80%" />
         <div class="recommend-item-text-container">
           <div class="recommend-item-text">
-            我觉得有一个分析里面说的挺对的，就是他认为所谓a药的效果实际上就是所谓的杀死这个人，指的是把这个人整个人的细胞全部杀死，然后在细胞死亡以后胶囊里面的药物就会立刻复制他身上的所有细胞。最后让那个人像是重获新生一样活过来，相当于他已经死了，现在还是有药物复制他原本的细胞，从而恢复的人。这也能说是为什么说他是能够让死人复活的神药了，如果真是这个效果的话，他的确能让死人复活。只要有对方的部分细胞配合上这个药物，就能在短时间重塑对方的身体。而且他的逻辑的确是有的，就比如说像柯南跟灰原来他们两个基本上没受什么外伤，在吃药的时候也没有什么症状，比如感冒之类的，所以他们恢复而不得变小是非常正常的，没有什么咳嗽之类的。但赤金玛丽在去的时候，他本身就有点要感冒的症状，再加上又掉进湖里面，掉进那个河里面呛了好几口水，如果说按照这个逻辑的话，细胞把它那个咳嗽或者感冒的病毒也默认成了他的细胞，并且复制下来。，在重塑他的身体的时候，把这个细胞也带上了那么再结合这个药物会让人永生，而永生最主要的就是让他的细胞不死，也就是说这种情况下他把感冒的病毒也搞成了永生不死的类型，也就是不会消亡的。，所以他的感冒到现在都没有恢复，也很合理。
+            {{ item.title }}
           </div>
         </div>
       </div>
-      <div class="recommend-item" style="background-color: pink"></div>
-      <div class="recommend-item" style="background-color: pink"></div>
-      <div class="recommend-item" style="background-color: pink"></div>
-      <div class="recommend-item" style="background-color: pink"></div>
     </div>
   </div>
   .
@@ -56,6 +51,7 @@
 <script setup lang="ts">
 import router from '@/router'
 import { ref } from 'vue'
+// 搜索框绑定的值
 const value = ref('')
 const currentindex = ref(1)
 // 点击导航栏触发事件
@@ -64,6 +60,53 @@ const handleClickclass = (e) => {
   if (e.target.tagName == 'LI') {
     currentindex.value = e.target.dataset.index
   }
+}
+const swipedata=ref([
+  {
+    id: 1,
+    name: '推荐',
+    image: 'https://img1.baidu.com/it/u=3422222422,2822892228&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+  },
+  {
+    id: 2,
+    name: '足球',
+    image: 'https://img2.baidu.com/it/u=3422222422,2822892228&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+  }])
+  // 点击轮播图触发事件
+const handleClickswiper = (item) => {
+  // currentindex.value = index.dataset.index;
+    //获取当前轮播图的id
+    const id = item.id
+    //跳转到对应id的页面
+    // router.push({
+    //   path: '/recommend_detail',
+    //   query: {
+    //     id: id,
+    //   },
+    // })
+}
+//推荐项数据
+const recommenddata = ref([
+  {
+    id: 1,
+    title: '推荐',
+    image: 'https://img1.baidu.com/it/u=3422222422,2822892228&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+  },
+  {
+    id: 2,
+    title: '足球',
+    image: 'https://img2.baidu.com/it/u=3422222422,2822892228&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+  }])
+  // 点击推荐项触发事件
+const handleClickrecommend = (item) => {
+  const id=item.id
+  //跳转到对应id的页面
+  // router.push({
+  //   path: '/recommend_detail',
+  //   query: {
+  //     id: id,
+  //   },
+  // })
 }
 const handleSearch = () => {
   router.push({

@@ -2,32 +2,34 @@
   <div class="GameDisplay">
     <div class="topline">
       <div class="gameinfo">
-        <span>2023-01-01 12:00</span>
-        <span>珠海校区</span>
+        <span>{{ datatime }}</span>
+        <span>{{ location }}</span>
       </div>
       <div class="shouchang">
-        <van-icon name="star" :color="shouchang ? '#bd3124' : '#bbbbbb'" @click="toggleShouchang" />
+        <van-icon name="star" :color="issaved ? '#bd3124' : '#bbbbbb'" @click="toggleShouchang" />
       </div>
-      <div class="gameclass">篮球</div>
+      <div class="gameclass">{{ gameclass }}</div>
     </div>
     <div class="middleline">
       <div class="matchinfo">
         <img src="@/assets/d195641d8c27c510.webp" alt="" />
-        <span>软件工程</span>
+        <span>{{ teamA }}</span>
       </div>
       <div class="gameres">
         <p>VS</p>
-        <p>0:0</p>
+        <p>{{ scoreA }}:{{ scoreB }}</p>
       </div>
       <div class="matchinfo">
         <img src="@/assets/d195641d8c27c510.webp" alt="" />
-        <span>微电子科学与技术</span>
+        <span>{{ teamB }}</span>
       </div>
     </div>
     <!-- 最下面一行 -->
     <div class="bottomline">
-      <button class="joinbtn tostart">未开始</button>
-      <button class="detailbtn">查看比赛详情</button>
+      <button class="joinbtn tostart" v-if="gamestate === 1">未开始</button>
+      <button class="joinbtn underway" v-else-if="gamestate === 2">进行中</button>
+      <button class="joinbtn finished" v-else>已结束</button>
+      <button class="detailbtn" @click="toDetail">查看比赛详情</button>
     </div>
   </div>
 </template>
@@ -35,14 +37,65 @@
 <script setup>
 import { ref } from 'vue'
 
-const shouchang = ref(false)
+const props = defineProps({
+  datatime: {
+    type: String,
+    default: '2023-01-01 12:00'
+  },
+  location: {
+    type: String,
+    default: '珠海校区'
+  },
+  gameclass: {
+    type: String,
+    default: '篮球'
+  },
+  issaved: {
+    type: Boolean,
+    default: false
+  },
+  teamA: {
+    type: String,
+    default: '软件工程'
+  },
+  teamB: {
+    type: String,
+    default: '微电子科学与技术'
+  },
+  scoreA: {
+    type: Number,
+    default: 0
+  },
+  scoreB: {
+    type: Number,
+    default: 0
+  },
+  gamestate: {
+    type: Number,
+    default: 1
+  },
+  gameid: {
+    type: String,
+    default: '0'
+  }
+})
+
+// 定义 emit 事件
+const emit = defineEmits(['update:issaved'])
 
 const toggleShouchang = () => {
-  if (shouchang.value) {
-    shouchang.value = false
-  } else {
-    shouchang.value = true
-  }
+  // 发出事件通知父组件修改 issaved 值
+  emit('update:issaved', props.gameid, !props.issaved)
+  //上传到服务器
+}
+const toDetail = () => {
+  //跳转到比赛详情页
+  // router.push({
+  //   path: '/gameDetail',
+  //   query: {
+  //     gameid: props.gameid
+  //   }
+  // })
 }
 </script>
 <style scoped>

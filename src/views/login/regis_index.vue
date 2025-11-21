@@ -10,7 +10,7 @@
     <van-form @submit="onSubmit">
   <van-cell-group inset>
     <van-field
-      v-model="username"
+      v-model="userinfo.studentID"
       name="myId"
       label="学号"
       placeholder="学号"
@@ -31,7 +31,7 @@
   </van-field> -->
 
     <van-field
-      v-model="password"
+      v-model="userinfo.password"
       type="password"
       name="myPassword"
       label="密码"
@@ -48,11 +48,11 @@
       placeholder="请确认密码"
       :rules="[{ required: true, message: '请填写确认密码' },
       {pattern: /^[0-9a-zA-Z]{6,12}$/, message: '请输入6-12位密码'},
-      {validator: (val) => val === password.valueOf(), message: '两次输入密码不一致'}
+      {validator: (val) => val === userinfo.password.valueOf(), message: '两次输入密码不一致'}
       ]"
     />
     <van-field
-      v-model="myName"
+      v-model="userinfo.myName"
       type="text"
       name="myName"
       label="姓名"
@@ -60,7 +60,7 @@
       :rules="[{ required: true, message: '请填写姓名' }]"
     />
     <van-field
-  v-model="fieldValue"
+  v-model="userinfo.fieldValue"
   is-link
   readonly
   label="学院"
@@ -103,23 +103,29 @@ const onClickBack = () => {
 //表单部分
 import { ref } from 'vue';
 
-const username = ref('');
-const password = ref('');
+const userinfo=ref({
+  studentID:'',
+  password:'',
+  myName:'',
+  fieldValue:'',
+});
 const newpassword = ref('');
-const myName = ref('');
 
 const onSubmit = async () => {
-  if (fieldValue.value === '') {
+  if (userinfo.value.fieldValue === '') {
     showToast({
       message: '请选择学院',
       position:'top',
       icon: 'none',
       duration: 2000,
       className:'mytoast',
-      
+
     })
     return;
   }
+  //提交表单数据
+  console.log('submit', userinfo.value)
+  router.push('/login_password')
 }
 
 
@@ -146,12 +152,11 @@ const columns = [
       { text: '土木工程学院', value: '土木工程学院' },
       { text: '遥感科学与技术学院', value: '遥感科学与技术学院' },
     ];
-    const fieldValue = ref('');
     const showPicker = ref(false);
 
     const onConfirm = ({ selectedOptions }) => {
       showPicker.value = false;
-      fieldValue.value = selectedOptions[0].text;
+      userinfo.value.fieldValue = selectedOptions[0].text;
     };
 </script>
 

@@ -10,7 +10,7 @@
       <!-- 头像 -->
       <div class="mypic" @click="changeAvatar">
         <span>头像</span>
-        <img src="@/assets/default-avatar.png" alt="" />
+        <img :src="myinfo.mypic" alt="" />
         <van-icon name="arrow" />
       </div>
 
@@ -18,13 +18,13 @@
       <div class="myname mystyle" @click="changeName">
         <span>姓名</span>
         <!-- <img src="@/assets/default-avatar.png" alt=""> -->
-        <p>Yog_Sothoth</p>
+        <p>{{myinfo.myname}}</p>
         <van-icon name="arrow" />
       </div>
 
       <!-- 性别 -->
       <div class="mysex mystyle" @click="showsexpicker = true">
-        <span>性别</span>
+        <span>{{myinfo.mysex}}</span>
         <!-- <img src="@/assets/default-avatar.png" alt=""> -->
         <p v-if="checked === '1'">男</p>
         <p v-else>女</p>
@@ -35,7 +35,7 @@
       <div class="myphone mystyle">
         <span>学号</span>
         <!-- <img src="@/assets/default-avatar.png" alt=""> -->
-        <p>23331031</p>
+        <p>{{studentID}}</p>
         <van-icon name="arrow" />
       </div>
 
@@ -43,7 +43,7 @@
       <div class="myid mystyle" @click="showPicker = true">
         <span>学院</span>
 
-        <p>{{ selectedCollege }}</p>
+        <p>{{ myinfo.selectedCollege }}</p>
         <van-icon name="arrow" />
       </div>
 
@@ -51,7 +51,7 @@
       <div class="myidentity mystyle">
         <span>身份</span>
         <!-- <img src="@/assets/default-avatar.png" alt=""> -->
-        <p>观众</p>
+        <p>{{myinfo.myidentity}}</p>
         <van-icon name="arrow" />
       </div>
     </div>
@@ -74,7 +74,24 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { ref, onBeforeMount } from 'vue'
+import { useCounterStore } from '@/stores/counter'
+import { storeToRefs } from 'pinia'
+import defaultAvatar from '@/assets/default-avatar.png'
+const userStore = useCounterStore()
+const {studentID} = storeToRefs(userStore)
+const myinfo = ref({
+  mypic: defaultAvatar,
+  myname: 'Yog_Sothoth',
+  mysex: '男',
+  myidentity: '观众',
+  selectedCollege: '软件工程学院'
+})
+
+onBeforeMount(() => {
+  // 请求我的信息
+  // userStore.getMyInformation(studentID)
+})
 
 const router = useRouter()
 const onClickLeft = () => {
@@ -106,7 +123,8 @@ const changeAvatar = () => {
       reader.readAsDataURL(file)
       reader.onload = () => {
         // 更新头像预览
-        document.querySelector('.mypic img').src = reader.result
+        myinfo.value.mypic = reader.result
+        // document.querySelector('.mypic img').src = reader.result
       }
     }
   })
@@ -117,7 +135,6 @@ const changeName = () => {
   router.push('/change_myname')
 }
 
-const selectedCollege = ref('软件工程学院')
 //更改学院
 const columns = [
   { text: '软件工程学院', value: '软件工程学院' },
@@ -145,13 +162,21 @@ const showPicker = ref(false)
 
 const onConfirm = ({ selectedOptions }) => {
   showPicker.value = false
-  selectedCollege.value = selectedOptions[0].text
+  myinfo.value.selectedCollege = selectedOptions[0].text
+  //上传学院
+  // userStore.updateMyInformation({
+  //   studentID: studentID,
+  //   selectedCollege: selectedOptions[0].text
+  // })
 }
 // 性别选择器
 const showsexpicker = ref(false)
 const checked = ref('1')
 const onChange = ({ name }) => {
   showsexpicker.value = false
+  myinfo.value.mysex = name
+  //上传性别
+
 }
 </script>
 <style scoped>

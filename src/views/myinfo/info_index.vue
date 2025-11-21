@@ -7,8 +7,8 @@
           <img src="@/assets/default-avatar.png" alt="" />
         </div>
         <div class="info_text">
-          <div class="myname">杜楠</div>
-          <div class="myidentity">观众</div>
+          <div class="myname">{{myname}}</div>
+          <div class="myidentity">{{myidentity}}</div>
         </div>
       </div>
       <div class="myinfoicon">
@@ -101,6 +101,17 @@
 
 <script setup>
 import router from '@/router'
+import { useCounterStore } from '@/stores/counter'
+import {onBeforeMount,ref} from 'vue'
+const userStore=useCounterStore()
+const studentID=userStore.studentID
+const myname=ref('杜楠')
+const myidentity=ref('观众')
+//进入页面后，渲染前请求数据
+onBeforeMount(()=>{
+  //请求我的信息
+  console.log(studentID)
+  })
 // import My_rating from './my_rating.vue'
 // 点击跳转我的信息详情页
 const toInfoDetail = () => {

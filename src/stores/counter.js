@@ -7,6 +7,6 @@ export const useCounterStore = defineStore('counter', () => {
   function increment() {
     count.value++
   }
-
-  return { count, doubleCount, increment }
+  const studentID=ref('23331031');
+  return { count, doubleCount, increment,studentID }
 })

@@ -1,4 +1,4 @@
- <template>
+<template>
     <div class="dragonboat">
       <div class="table_head">
         <div class="match_name">赛事名称</div>
@@ -9,16 +9,16 @@
       </div>
       <!-- 球员列表 -->
       <div class="table_body">
-        <div class="list">
-          <div class="match_name">逸仙杯</div>
+        <div class="list" v-for="item in dataList" :key="item.team_num">
+          <div class="match_name">{{item.match_name}}</div>
           <div class="team_name">
-            <span class="team_num">1</span>
-            <span class="team_img"><img src="@/assets/d195641d8c27c510.webp" alt="" /></span>
-            <span class="team_names">软件工程队</span>
+            <span class="team_num">{{item.team_num}}</span>
+            <span class="team_img"><img :src="item.team_img" alt="" /></span>
+            <span class="team_names">{{item.team_name}}</span>
           </div>
-          <div class="boatnum">22人</div>
-          <div class="match_class">200米</div>
-          <div class="match_time">1分50秒</div>
+          <div class="boatnum">{{item.boatnum}}</div>
+          <div class="match_class">{{item.match_class}}</div>
+          <div class="match_time">{{item.match_time}}</div>
         </div>
       </div>
 
@@ -26,7 +26,31 @@
       </div>
   </template>
   <script setup lang="ts">
-
+  import { ref, onBeforeMount } from 'vue'
+  onBeforeMount(() => {
+    // 初始化数据
+    // updateData()
+  })
+  const dataList=ref([
+    {
+      match_name:'逸仙杯',
+      team_num:'1',
+      team_img: '/src/assets/d195641d8c27c510.webp',
+      team_name:'软件工程队',
+      boatnum:'22人',
+      match_class:'200米',
+      match_time:'1分50秒'
+    },
+    {
+      match_name:'逸仙杯',
+      team_num:'2',
+      team_img: '/src/assets/d195641d8c27c510.webp',
+      team_name:'软件工程队',
+      boatnum:'22人',
+      match_class:'200米',
+      match_time:'1分50秒'
+    },
+  ])
   </script>
   <style scoped>
   /* 球队头部 */

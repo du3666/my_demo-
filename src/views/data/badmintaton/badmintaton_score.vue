@@ -10,37 +10,58 @@
         </ul>
       </div>
       <div class="table_body">
-        <div class="list">
+        <div class="list" v-for="team in matchdata" :key="team.gameId" @click="handleClickTeam(team)">
           <div class="qiudui">
-            <span>1</span>
-            <span><img src="/src/assets/d195641d8c27c510.webp" alt="" /></span>
-            <span>软件工程</span>
+            <span>{{team.teamrank}}</span>
+            <span><img :src="team.teamlogo" alt="" /></span>
+            <span>{{team.teamname}}</span>
           </div>
           <ul>
-            <li class="gamenum">10</li>
-            <li class="winlose">8/2/2</li>
-            <li class="score">98.6%</li>
-            <li class="points">26</li>
-          </ul>
-        </div>
-       <div class="list">
-          <div class="qiudui">
-            <span>1</span>
-            <span><img src="/src/assets/d195641d8c27c510.webp" alt="" /></span>
-            <span>软件工程</span>
-          </div>
-          <ul>
-            <li class="gamenum">1</li>
-            <li class="winlose">18/2/2</li>
-            <li class="score">1/6</li>
-            <li class="points">2</li>
+            <li class="gamenum">{{team.gamenum}}</li>
+            <li class="winlose">{{team.winlose}}</li>
+            <li class="score">{{team.winrate}}</li>
+            <li class="points">{{team.points}}</li>
           </ul>
         </div>
       </div>
     </div>
   </template>
   <script setup lang="ts">
-
+  import router from '@/router';
+  import { ref ,onBeforeMount} from 'vue';
+  const matchdata = ref([
+    {
+      teamrank:1,
+      teamname:'软件工程',
+      teamlogo:'/src/assets/d195641d8c27c510.webp',
+      gamenum:10,
+      winlose:'8/2/2',
+      winrate:'98.6%',
+      points:26,
+      gameId:'1',
+    },
+    {
+      teamrank:2,
+      teamname:'微电子科学与技术',
+      teamlogo:'/src/assets/d195641d8c27c510.webp',
+      gamenum:1,
+      winlose:'18/2/2',
+      winrate:'1/6',
+      points:2,
+      gameId:'2',
+    },
+  ])
+  onBeforeMount(()=>{
+    // 从服务器获取数据
+    // 更新 matchdata.value
+    console.log(matchdata.value)
+  })
+  const handleClickTeam = (team) => {
+    // router.push({
+    //   name: 'badmintaton_team',
+    //   params: { teamname: team.teamname }
+    // });
+  }
   </script>
   <style scoped>
     /* 表格 */

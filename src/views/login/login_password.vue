@@ -7,7 +7,7 @@
       <van-form @submit="onSubmit">
         <van-cell-group inset>
           <van-field
-            v-model="username"
+            v-model="studentID"
             name="myId"
             label="学号"
             placeholder="学号"
@@ -43,16 +43,26 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import router from '@/router'
-
+import { useCounterStore } from '@/stores/counter'
+import { storeToRefs } from 'pinia'
+const counterStore = useCounterStore()
+const { studentID } = storeToRefs(counterStore)
 // 顶部导航栏区域
 const onClickLeft = () => history.back()
 // const onClickRight = () => {};
 
 // 表单区域
-const username = ref('')
 const password = ref('')
 const onSubmit = (values) => {
+  // 验证表单数据
+  if (!values.myId || !values.password) {
+    // 提示用户输入完整信息
+    return
+  }
+  //提交表单数据
+
   console.log('submit', values)
+  router.push('/')
 }
 
 // 底部文字区域

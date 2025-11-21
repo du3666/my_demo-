@@ -9,16 +9,16 @@
       </div>
       <!-- 球员列表 -->
       <div class="table_body">
-        <div class="list">
-          <div class="match_name">逸仙杯</div>
+        <div class="list" v-for="item in dataList" :key="item.player_num">
+          <div class="match_name">{{item.match_name}}</div>
           <div class="player">
-            <span class="player_num">1</span>
-            <span class="player_img"><img src="@/assets/d195641d8c27c510.webp" alt="" /></span>
-            <span class="player_names">王梦蕲</span>
+            <span class="player_num">{{item.player_num}}</span>
+            <span class="player_img"><img :src="item.player_img" alt="" /></span>
+            <span class="player_names">{{item.player_names}}</span>
           </div>
-          <div class="team_name">软件工程队</div>
-          <div class="match_class">200米</div>
-          <div class="match_time">1分50秒</div>
+          <div class="team_name">{{item.team_name}}</div>
+          <div class="match_class">{{item.match_class}}</div>
+          <div class="match_time">{{item.match_time}}</div>
         </div>
       </div>
 
@@ -26,7 +26,31 @@
       </div>
   </template>
   <script setup lang="ts">
-
+  import {ref,onBeforeMount} from 'vue'
+  const dataList=ref([
+    {
+      match_name:'逸仙杯',
+      player_num:'1',
+      player_img:'/src/assets/d195641d8c27c510.webp',
+      player_names:'王梦蕲',
+      team_name:'软件工程队',
+      match_class:'200米',
+      match_time:'1分50秒'
+    },
+    {
+      match_name:'逸仙杯',
+      player_num:'2',
+      player_img:'/src/assets/d195641d8c27c510.webp',
+      player_names:'王梦蕲',
+      team_name:'软件工程队',
+      match_class:'200米',
+      match_time:'1分50秒'
+    },
+  ])
+  onBeforeMount(() => {
+    // 初始化数据
+    // updateData()
+  })
   </script>
   <style scoped>
   /* 球队头部 */

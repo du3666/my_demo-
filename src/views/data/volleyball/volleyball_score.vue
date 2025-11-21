@@ -8,15 +8,15 @@
       </div>
       <!-- 球员列表 -->
       <div class="table_body">
-        <div class="list">
+        <div class="list" v-for="team in matchdata" :key="team.teamrank" @click="handleClickTeam(team)">
           <div class="team_name">
-            <span class="team_num">1</span>
-            <span class="team_img"><img src="@/assets/d195641d8c27c510.webp" alt="" /></span>
-            <span class="team_names">软件工程队</span>
+            <span class="team_num">{{team.teamrank}}</span>
+            <span class="team_img"><img :src="team.teamlogo" alt="" /></span>
+            <span class="team_names">{{team.teamname}}</span>
           </div>
-          <div class="match_num">13</div>
-          <div class="win_lose">12/1</div>
-          <div class="curr">20</div>
+          <div class="match_num">{{team.gamenum}}</div>
+          <div class="win_lose">{{team.winlose}}</div>
+          <div class="curr">{{team.points}}</div>
         </div>
       </div>
 
@@ -24,7 +24,36 @@
       </div>
   </template>
   <script setup lang="ts">
-
+import { ref ,onBeforeMount} from 'vue';
+import router from '@/router';
+const matchdata = ref([
+  {
+    teamrank:1,
+    teamname:'软件工程队',
+    teamlogo:'/src/assets/d195641d8c27c510.webp',
+    gamenum:13,
+    winlose:'12/1',
+    points:20,
+    gameId:'1',
+  },
+  {
+    teamrank:2,
+    teamname:'微电子科学与技术',
+    teamlogo:'/src/assets/d195641d8c27c510.webp',
+    gamenum:1,
+    winlose:'18/2/2',
+    points:2,
+    gameId:'2',
+  },
+])
+const handleClickTeam = (team) => {
+  // router.push({
+  //   path: '/data/volleyball/volleyball_team',
+  //   query: {
+  //     gameId: team.gameId,
+  //   }
+  // })
+}
   </script>
   <style scoped>
   /* 球队头部 */
